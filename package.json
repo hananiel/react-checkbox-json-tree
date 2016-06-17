@@ -1,7 +1,7 @@
 {
-  "name": "react-json-tree",
-  "version": "0.7.3",
-  "description": "React JSON Viewer Component, Extracted from redux-devtools",
+  "name": "react-checkbox-json-tree",
+  "version": "0.0.1",
+  "description": "React JSON Viewer Component with checkbox, Extracted from redux-devtools",
   "main": "lib/index.js",
   "scripts": {
     "clean": "rimraf lib",

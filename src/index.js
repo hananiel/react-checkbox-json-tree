@@ -89,6 +89,7 @@ export default class JSONTree extends React.Component {
       hideRoot,
       theme,
       isLightTheme,
+      handleChange,
       ...rest
     } = this.props;
 
@@ -114,6 +115,7 @@ export default class JSONTree extends React.Component {
           allExpanded={typeof expandAll === 'undefined' ? false : expandAll}
           keyPath={hideRoot ? [] : keyPath}
           value={postprocessValue(value)}
+          handleChange={handleChange}
         />
       </ul>
     );

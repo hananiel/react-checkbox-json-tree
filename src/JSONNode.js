@@ -14,6 +14,8 @@ const JSONNode = ({
   value,
   valueRenderer,
   isCustomNode,
+  checkState,
+  handleChange,
   ...rest
 }) => {
   const nodeType = isCustomNode(value) ? 'Custom' : objType(value);
@@ -27,7 +29,9 @@ const JSONNode = ({
     nodeType,
     styling,
     value,
-    valueRenderer
+    valueRenderer,
+    checkState,
+    handleChange
   };
 
   const nestedNodeProps = {
@@ -75,8 +79,10 @@ JSONNode.propTypes = {
   styling: PropTypes.func.isRequired,
   value: PropTypes.any,
   valueRenderer: PropTypes.func.isRequired,
-  isCustomNode: PropTypes.func.isRequired
+  checkState: PropTypes.any,
+  isCustomNode: PropTypes.func.isRequired,
+  handleChange: PropTypes.func
+
 };
 
 export default JSONNode;
-
