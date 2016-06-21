@@ -63,7 +63,7 @@ const getDefaultThemeStyling = theme => {
     label: {
       display: 'inline-block',
       color: colors.LABEL_COLOR,
-      marginLeft: 8,
+      marginLeft: 12,
     },
 
     valueLabel: {
