@@ -92,7 +92,7 @@ export default class JSONTree extends React.Component {
       handleChange,
       ...rest
     } = this.props;
-
+    console.log('JSONTree', this.props, ...rest);
     if (typeof expandRoot !== 'undefined') {
       console.error( // eslint-disable-line no-console
         'The expandRoot property is deprecated, use "shouldExpandNode: () => false" instead'
@@ -106,7 +106,7 @@ export default class JSONTree extends React.Component {
     }
 
     const styling = createStylingFromTheme(checkLegacyTheming(theme, rest), null, isLightTheme);
-
+    console.log('JSONNode ', value, postprocessValue(value));
     return (
       <ul {...styling('tree')}>
         <JSONNode

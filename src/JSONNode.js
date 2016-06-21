@@ -14,12 +14,14 @@ const JSONNode = ({
   value,
   valueRenderer,
   isCustomNode,
-  checkState,
+  checkedStates,
   handleChange,
   ...rest
 }) => {
   const nodeType = isCustomNode(value) ? 'Custom' : objType(value);
-
+  let checkedState = checkedStates &&
+                      checkedStates.find(
+                            x => x.key == keyPath[0] && x.value == value) != null;
   const simpleNodeProps = {
     getItemString,
     initialExpanded,
@@ -30,10 +32,11 @@ const JSONNode = ({
     styling,
     value,
     valueRenderer,
-    checkState,
+    checkedState,
+    checkedStates,
     handleChange
   };
-
+  console.log('JSONNode ...simpleNodeProps', ...simpleNodeProps);
   const nestedNodeProps = {
     ...rest,
     ...simpleNodeProps,
@@ -79,7 +82,7 @@ JSONNode.propTypes = {
   styling: PropTypes.func.isRequired,
   value: PropTypes.any,
   valueRenderer: PropTypes.func.isRequired,
-  checkState: PropTypes.any,
+  checkedState: PropTypes.any,
   isCustomNode: PropTypes.func.isRequired,
   handleChange: PropTypes.func
 
