@@ -19,7 +19,10 @@ const JSONValueNode = ({
   <li
     {...styling('value', nodeType, keyPath)}
   >
-    <input type='checkbox' value={valueRenderer(value, value, ...keyPath)} id={labelRenderer(...keyPath)} checked={checkedState} onChange={handleChange} />
+    <input type='checkbox' value={value || ''}
+      id={labelRenderer(...keyPath)}
+      checked={checkedState}
+      onChange={handleChange} />
     <label {...styling(['label', 'valueLabel'], nodeType, keyPath)}>
       {labelRenderer(...keyPath)}:
     </label>

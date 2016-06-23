@@ -5,6 +5,7 @@ import JSONArrayNode from './JSONArrayNode';
 import JSONIterableNode from './JSONIterableNode';
 import JSONValueNode from './JSONValueNode';
 
+
 const JSONNode = ({
   getItemString,
   initialExpanded = false,
@@ -15,13 +16,20 @@ const JSONNode = ({
   valueRenderer,
   isCustomNode,
   checkedStates,
-  handleChange,
+  handleCheckBoxClick,
   ...rest
 }) => {
   const nodeType = isCustomNode(value) ? 'Custom' : objType(value);
   let checkedState = checkedStates &&
                       checkedStates.find(
                             x => x.key == keyPath[0] && x.value == value) != null;
+  const handleChange= (e)=>{
+    //console.log('handleChangeWithKey', e,keyPath);
+    if(e && e.target) {
+      let fullKey = keyPath.slice(0,-1).reduce((pv,cv)=> `${cv}.${pv}`);
+      handleCheckBoxClick(fullKey,e.target.id, e.target.value);
+    }
+  }
   const simpleNodeProps = {
     getItemString,
     initialExpanded,
@@ -36,12 +44,13 @@ const JSONNode = ({
     checkedStates,
     handleChange
   };
-  console.log('JSONNode ...simpleNodeProps', ...simpleNodeProps);
+//  console.log('JSONNode ...simpleNodeProps', ...simpleNodeProps);
   const nestedNodeProps = {
     ...rest,
     ...simpleNodeProps,
     data: value,
-    isCustomNode
+    isCustomNode,
+    handleCheckBoxClick
   };
 
   switch (nodeType) {
@@ -84,7 +93,7 @@ JSONNode.propTypes = {
   valueRenderer: PropTypes.func.isRequired,
   checkedState: PropTypes.any,
   isCustomNode: PropTypes.func.isRequired,
-  handleChange: PropTypes.func
+  handleCheckBoxClick: PropTypes.func
 
 };
 
